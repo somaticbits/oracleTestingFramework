@@ -1,0 +1,261 @@
+{ parameter
+    (or (or (or (pair %add_data (nat %data) (nat %sensor_id)) (nat %add_sensor))
+            (or (nat %remove_sensor) (address %update_admin)))
+        (mutez %withdraw)) ;
+  storage
+    (pair (pair (address %admin) (map %n_data_ids nat nat))
+          (big_map %sensor_ledger (pair nat nat) nat)) ;
+  code { PUSH string "NOT_ADMIN" ;
+         PUSH string "SENSOR_NOT_FOUND" ;
+         DIG 2 ;
+         UNPAIR ;
+         IF_LEFT
+           { IF_LEFT
+               { IF_LEFT
+                   { UNPAIR ;
+                     DUP 3 ;
+                     CAR ;
+                     CAR ;
+                     SOURCE ;
+                     COMPARE ;
+                     NEQ ;
+                     IF { DROP 4 ; FAILWITH }
+                        { DIG 4 ;
+                          DROP ;
+                          DUP 3 ;
+                          CAR ;
+                          CDR ;
+                          DUP 3 ;
+                          GET ;
+                          IF_NONE { DIG 3 ; FAILWITH } { DIG 4 ; DROP } ;
+                          DUP 4 ;
+                          CAR ;
+                          CDR ;
+                          PUSH nat 1 ;
+                          DUP 3 ;
+                          ADD ;
+                          SOME ;
+                          DUP 5 ;
+                          UPDATE ;
+                          DUP 5 ;
+                          CDR ;
+                          DIG 3 ;
+                          DIG 3 ;
+                          DIG 4 ;
+                          PAIR ;
+                          SWAP ;
+                          SOME ;
+                          SWAP ;
+                          UPDATE ;
+                          DIG 2 ;
+                          CAR ;
+                          PAIR ;
+                          DUP ;
+                          CDR ;
+                          DUG 2 ;
+                          CAR ;
+                          CAR ;
+                          PAIR ;
+                          PAIR } ;
+                     NIL operation ;
+                     PAIR }
+                   { DIG 2 ;
+                     DROP ;
+                     SWAP ;
+                     DUP ;
+                     DUG 2 ;
+                     CAR ;
+                     CAR ;
+                     SOURCE ;
+                     COMPARE ;
+                     NEQ ;
+                     IF { DROP 2 ; FAILWITH }
+                        { DIG 2 ;
+                          DROP ;
+                          SWAP ;
+                          DUP ;
+                          DUG 2 ;
+                          CAR ;
+                          CDR ;
+                          SWAP ;
+                          DUP ;
+                          DUG 2 ;
+                          MEM ;
+                          IF { DROP 2 ; PUSH string "SENSOR_ALREADY_EXISTS" ; FAILWITH }
+                             { SWAP ;
+                               DUP ;
+                               DUG 2 ;
+                               CDR ;
+                               DUP 3 ;
+                               CAR ;
+                               CDR ;
+                               PUSH nat 0 ;
+                               DIG 3 ;
+                               SWAP ;
+                               SOME ;
+                               SWAP ;
+                               UPDATE ;
+                               DIG 2 ;
+                               CAR ;
+                               CAR ;
+                               PAIR ;
+                               PAIR } } ;
+                     NIL operation ;
+                     PAIR } }
+               { IF_LEFT
+                   { SWAP ;
+                     DUP ;
+                     DUG 2 ;
+                     CAR ;
+                     CAR ;
+                     SOURCE ;
+                     COMPARE ;
+                     NEQ ;
+                     IF { DROP 3 ; FAILWITH }
+                        { DIG 3 ;
+                          DROP ;
+                          SWAP ;
+                          DUP ;
+                          DUG 2 ;
+                          CAR ;
+                          CDR ;
+                          SWAP ;
+                          DUP ;
+                          DUG 2 ;
+                          GET ;
+                          IF_NONE { DIG 2 ; FAILWITH } { DIG 3 ; DROP } ;
+                          DUP 3 ;
+                          CDR ;
+                          SWAP ;
+                          DUP 3 ;
+                          PAIR ;
+                          PUSH nat 0 ;
+                          DUP 4 ;
+                          PAIR ;
+                          PAIR ;
+                          PAIR ;
+                          LEFT (big_map (pair nat nat) nat) ;
+                          LOOP_LEFT
+                            { UNPAIR ;
+                              UNPAIR ;
+                              SWAP ;
+                              DUP ;
+                              DUG 2 ;
+                              CDR ;
+                              SWAP ;
+                              DUP ;
+                              DUG 2 ;
+                              CDR ;
+                              COMPARE ;
+                              GT ;
+                              IF { DROP 2 ;
+                                   RIGHT (pair (pair (pair nat nat) (pair nat nat)) (big_map (pair nat nat) nat)) }
+                                 { PUSH nat 1 ;
+                                   SWAP ;
+                                   DUP ;
+                                   DUG 2 ;
+                                   CDR ;
+                                   ADD ;
+                                   SWAP ;
+                                   DUP ;
+                                   DUG 2 ;
+                                   CAR ;
+                                   PAIR ;
+                                   DIG 3 ;
+                                   NONE nat ;
+                                   DIG 3 ;
+                                   UPDATE ;
+                                   DUG 2 ;
+                                   PAIR ;
+                                   PAIR ;
+                                   LEFT (big_map (pair nat nat) nat) } } ;
+                          DUP 3 ;
+                          CAR ;
+                          PAIR ;
+                          DUP ;
+                          CDR ;
+                          DIG 3 ;
+                          CAR ;
+                          CDR ;
+                          DIG 3 ;
+                          NONE nat ;
+                          SWAP ;
+                          UPDATE ;
+                          DIG 2 ;
+                          CAR ;
+                          CAR ;
+                          PAIR ;
+                          PAIR } ;
+                     NIL operation ;
+                     PAIR }
+                   { DIG 2 ;
+                     DROP ;
+                     SWAP ;
+                     DUP ;
+                     DUG 2 ;
+                     CAR ;
+                     CAR ;
+                     SOURCE ;
+                     COMPARE ;
+                     NEQ ;
+                     IF { DROP 2 ; FAILWITH }
+                        { DIG 2 ;
+                          DROP ;
+                          SWAP ;
+                          DUP ;
+                          DUG 2 ;
+                          CDR ;
+                          DIG 2 ;
+                          CAR ;
+                          CDR ;
+                          DIG 2 ;
+                          PAIR ;
+                          PAIR } ;
+                     NIL operation ;
+                     PAIR } } }
+           { DIG 2 ;
+             DROP ;
+             SWAP ;
+             DUP ;
+             DUG 2 ;
+             CAR ;
+             CAR ;
+             SOURCE ;
+             COMPARE ;
+             NEQ ;
+             IF { DROP 2 ; FAILWITH }
+                { DIG 2 ;
+                  DROP ;
+                  DUP ;
+                  BALANCE ;
+                  COMPARE ;
+                  LT ;
+                  IF { DROP 2 ; PUSH string "NOT_ENOUGH_BALANCE" ; FAILWITH }
+                     { SWAP ;
+                       DUP ;
+                       DUG 2 ;
+                       CAR ;
+                       CAR ;
+                       CONTRACT unit ;
+                       IF_NONE { PUSH string "NOT_CONTRACT" ; FAILWITH } {} ;
+                       DIG 2 ;
+                       NIL operation ;
+                       DIG 2 ;
+                       DIG 3 ;
+                       UNIT ;
+                       TRANSFER_TOKENS ;
+                       CONS ;
+                       PAIR } } } } ;
+  view "get_data"
+       (pair (nat %data_id) (nat %sensor_id))
+       nat
+       { UNPAIR ;
+         UNPAIR ;
+         DIG 2 ;
+         CDR ;
+         SWAP ;
+         DIG 2 ;
+         PAIR ;
+         GET ;
+         IF_NONE { PUSH string "SENSOR_NOT_FOUND" ; FAILWITH } {} } }
+

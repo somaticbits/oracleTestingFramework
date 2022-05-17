@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteMappingsManager">
+    <list>
+      <list>
+        <remote-mappings server-id="NodeJS@sshConfig://pi@192.168.2.155:22 password">
+          <settings>
+            <list>
+              <mapping local-root="$PROJECT_DIR$/dist" remote-root="/home/pi/oracle" />
+            </list>
+          </settings>
+        </remote-mappings>
+      </list>
+    </list>
+  </component>
+</project>

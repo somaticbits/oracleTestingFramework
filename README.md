@@ -65,7 +65,7 @@ This is a mostly automatic framework that evaluates the cost of adding data to t
 
 ### Prerequisites
 
-Get a Flextesa setup and running
+Get a Flextesa sandbox setup and running
 * ```sh
   docker run --rm --name objkt-sandbox --detach -p 20000:20000 -e block_time=3 oxheadalpha/flextesa:latest hangzbox start
   ```

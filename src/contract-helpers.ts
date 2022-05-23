@@ -77,5 +77,6 @@ export const getCosts = async (signer: TezosToolkit, contractAddress: string, da
       total = (op.fee + Number.parseFloat(op.consumedGas)) / 1e6;
     })
     .catch((error) => console.log(`Error: ${JSON.stringify(error, null, 2)}`));
-  return { consumedGas, storageFee, total };
+  const timestamp = Date.now();
+  return { timestamp, data, consumedGas, storageFee, total };
 };

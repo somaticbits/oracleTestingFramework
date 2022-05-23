@@ -8,7 +8,7 @@
 <h3 align="center">Oracle Testing Framework</h3>
 
   <p align="center">
-    project_description
+    Automatic cost metrics for oracle smart contracts
   </p>
 </div>
 
@@ -99,7 +99,7 @@ The usage is pretty simple: run ```npm start``` and it will automatically deploy
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@somaticbits](https://twitter.com/somaticbits) - david@somaticbits.com
+David Pettersson - [@somaticbits](https://twitter.com/somaticbits) - david@somaticbits.com
 
 Project Link: [https://github.com/somaticbits/oracleTestingFramework](https://github.com/somaticbits/oracleTestingFramework)
 

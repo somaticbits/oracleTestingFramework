@@ -41,7 +41,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `somaticbits`, `oracleTestingFramework`, `somaticbits`, `david-pettersson`, `somaticbits`, `david`, `Oracle Testing Framework`, `project_description`
+This is a mostly automatic framework that evaluates the cost of adding data to the storage of oracle smart contracts for one sensor. It records the gas fee, storage cost, timestamp and total cost. Final output is a csv file per smart contract which can then be graphed.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -62,7 +62,6 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is a mostly automatic framework that evaluates the cost of adding data to the storage of oracle smart contracts for one sensor. It records the gas fee, storage cost, timestamp and total cost. Final output is a csv file per smart contract which can then be graphed.
 
 ### Prerequisites
 
